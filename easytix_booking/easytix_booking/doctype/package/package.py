@@ -66,7 +66,7 @@ class Package(Document):
 		# Fetch bookings in one query
 		bookings = frappe.get_all(
 			"Booking",
-			filters={"package": self.name, "status": "Approved"},
+			filters={"package": self.name, "status": ["in", ["Approved", "Pending", "Created"]]},
 			fields=["booking_date", "SUM(quantity) as total_quantity"],
 			group_by="booking_date"
 		)

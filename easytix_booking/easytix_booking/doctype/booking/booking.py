@@ -7,14 +7,19 @@ from frappe.utils import datetime, getdate
 
 class Booking(Document):
     def validate(self):
-        package = frappe.get_doc("Package", self.package)
-        
-        try:
-            dates_with_capacity = package.get_available_dates()
-        except Exception as e:
-            frappe.throw(f"Failed to retrieve available dates: {str(e)}")
-        
-        capacity_for_date = dates_with_capacity[self.booking_date]
-        
-        if capacity_for_date is None:
-           frappe.throw(f"Booking date {self.booking_date} is not available for package '{self.package}'")
+        if self.status == "Created" :
+            package = frappe.get_doc("Package", self.package)
+            
+            try:
+                dates_with_capacity = package.get_available_dates()
+            except Exception as e:
+                frappe.throw(f"Failed to retrieve available dates: {str(e)}")
+            
+            dd = self.booking_date.strftime("%Y-%m-%d")
+            capacity_for_date = dates_with_capacity[dd]
+
+            if capacity_for_date is None:
+                frappe.throw(f"Booking date {self.booking_date} is not available for package '{self.package}'")
+            
+            if capacity_for_date < self.quantity:
+                frappe.throw(f"Booking quantity for {self.booking_date} is insufficient for package '{self.package}'")
