@@ -4,14 +4,14 @@ from frappe.model.document import Document
 from frappe.utils import datetime
 
 @frappe.whitelist()
-def create_booking(booking_name, email, contact_number, package_name, booking_date, quantity, participants=None, special_requests=None):
+def create(booking_name, email, contact_number, package, booking_date, quantity, participants=None, special_requests=None):
     """
     Create a new booking.
     Args:
         booking_name (str): Name of the booking.
         email (str): Email address.
         contact_number (str): Phone number.
-        package_name (str): Name of the package.
+        package (str): Name of the package.
         booking_date (str): Booking date (YYYY-MM-DD).
         quantity (int): Number of participants.
         participants (list): List of participant details (optional).
@@ -20,13 +20,13 @@ def create_booking(booking_name, email, contact_number, package_name, booking_da
     """
     try:
         # Validate inputs
-        if not all([booking_name, email, contact_number, package_name, booking_date, quantity]):
+        if not all([booking_name, email, contact_number, package, booking_date, quantity]):
             raise ValueError("All required fields must be provided")
         
         # Validate package exists
-        package = frappe.get_doc("Package", {"name": package_name})
+        package = frappe.get_doc("Package", package)
         if not package:
-            raise ValueError(f"Package '{package_name}' not found")
+            raise ValueError(f"Package '{package}' not found")
         
         # Validate booking date format and value
         try:
@@ -52,7 +52,7 @@ def create_booking(booking_name, email, contact_number, package_name, booking_da
             "package": package.name,
             "booking_date": booking_date,
             "quantity": quantity,
-            "status": "Pending",  # Default status
+            "status": "Created",
             "participants": participants or [],
             "special_requests": special_requests or []
         })
@@ -85,7 +85,7 @@ def create_booking(booking_name, email, contact_number, package_name, booking_da
         }
 
 @frappe.whitelist()
-def change_booking_status(booking_name, status):
+def finalize(booking_name):
     """
     Update the status of a booking.
     Args:
@@ -94,22 +94,15 @@ def change_booking_status(booking_name, status):
     Returns: Updated booking details.
     """
     try:
-        # Validate inputs
-        if not booking_name or not status:
-            raise ValueError("Booking name and status are required")
-        
-        # Validate status
-        valid_statuses = ["Pending", "Approved", "Rejected"]
-        if status not in valid_statuses:
-            raise ValueError(f"Invalid status. Must be one of {', '.join(valid_statuses)}")
-        
-        # Fetch booking
-        booking = frappe.get_doc("Booking", {"booking_name": booking_name})
+        booking = frappe.get_doc("Booking", booking_name)
         if not booking:
             raise ValueError(f"Booking '{booking_name}' not found")
         
+        if booking.status != "Created":
+            raise ValueError(f"Booking '{booking_name}' already finalized")
+
         # Update status
-        booking.status = status
+        booking.status = "Pending"
         booking.save(ignore_permissions=False)
         frappe.db.commit()
         
