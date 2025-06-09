@@ -3,7 +3,6 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import datetime, getdate
 
 class Booking(Document):
     def validate(self):
