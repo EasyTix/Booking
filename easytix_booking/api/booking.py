@@ -128,3 +128,39 @@ def finalize(booking_name):
             "message": f"Failed to update booking status: {str(e)}",
             "data": {}
         }
+    
+@frappe.whitelist()
+def update_manifest(booking_name, participants=None):
+    try:
+        booking = frappe.get_doc("Booking", booking_name)
+        if not booking:
+            raise ValueError(f"Booking '{booking_name}' not found")
+        
+        booking.participants = participants
+        booking.save(ignore_permissions=False)
+        frappe.db.commit()
+        
+        return {
+            "status": "success",
+            "data": {
+                "name": booking.name,
+                "booking_name": booking.booking_name,
+                "status": booking.status,
+                "participants": booking.participants,
+            },
+            "message": "Booking status updated successfully"
+        }
+    
+    except frappe.DoesNotExistError:
+        return {
+            "status": "error",
+            "message": f"Booking '{booking_name}' not found",
+            "data": {}
+        }
+    except Exception as e:
+        frappe.db.rollback()
+        return {
+            "status": "error",
+            "message": f"Failed to update booking status: {str(e)}",
+            "data": {}
+        }
