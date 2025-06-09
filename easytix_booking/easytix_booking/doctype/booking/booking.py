@@ -14,8 +14,7 @@ class Booking(Document):
         except Exception as e:
             frappe.throw(f"Failed to retrieve available dates: {str(e)}")
         
-        booking_date_str = getdate(self.booking_date).strftime("%Y-%m-%d")
-        capacity_for_date = dates_with_capacity[booking_date_str]
+        capacity_for_date = dates_with_capacity[self.booking_date]
         
         if capacity_for_date is None:
-           frappe.throw(f"Booking date {booking_date_str} is not available for package '{self.package}'")
+           frappe.throw(f"Booking date {self.booking_date} is not available for package '{self.package}'")
