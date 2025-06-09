@@ -1,0 +1,109 @@
+{
+  "actions": [],
+  "allow_auto_repeat": 0,
+  "allow_copy": 0,
+  "allow_events_in_timeline": 0,
+  "allow_guest_to_view": 0,
+  "allow_import": 0,
+  "allow_rename": 0,
+  "custom": 0,
+  "doctype": "DocType",
+  "editable_grid": 0,
+  "engine": "InnoDB",
+  "field_order": [
+    "scheduled_trip_details_section",
+    "booking_date",
+    "package",
+    "column_break_uvot",
+    "quantity",
+    "capacity",
+    "bookings_section",
+    "bookings",
+    "participant_details_section",
+    "participants"
+  ],
+  "fields": [
+    {
+      "fieldname": "scheduled_trip_details_section",
+      "fieldtype": "Section Break",
+      "label": "Scheduled Trip Details"
+    },
+    {
+      "fieldname": "booking_date",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "label": "Booking Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "package",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Package",
+      "options": "Package",
+      "reqd": 1
+    },
+    {
+      "fieldname": "column_break_uvot",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "quantity",
+      "fieldtype": "Int",
+      "in_list_view": 0,
+      "label": "Quantity",
+      "non_negative": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "capacity",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "Capacity",
+      "non_negative": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "bookings_section",
+      "fieldtype": "Section Break",
+      "label": "Bookings"
+    },
+    {
+      "fieldname": "bookings",
+      "fieldtype": "Table",
+      "label": "",
+      "options": "Booking"
+    },
+    {
+      "fieldname": "participant_details_section",
+      "fieldtype": "Tab Break",
+      "label": "Participants"
+    },
+    {
+      "fieldname": "participants",
+      "fieldtype": "Table",
+      "label": "",
+      "options": "Booking Participant"
+    }
+  ],
+  "hide_toolbar": 1,
+  "is_virtual": 1,
+  "issingle": 0,
+  "istable": 0,
+  "links": [],
+  "module": "Easytix Booking",
+  "name": "Scheduled Trips",
+  "permissions": [
+    {
+      "read": 1,
+      "report": 1,
+      "role": "Portal User"
+    }
+  ],
+  "sort_field": "booking_date",
+  "sort_order": "DESC",
+  "title_field": "booking_date",
+  "track_changes": 0,
+  "track_views": 0
+}

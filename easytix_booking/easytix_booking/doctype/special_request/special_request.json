@@ -1,0 +1,23 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "custom": 1,
+  "doctype": "DocType",
+  "editable_grid": 0,
+  "engine": "InnoDB",
+  "fields": [
+    {
+      "fieldname": "message",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Message",
+      "reqd": 1
+    }
+  ],
+  "istable": 1,
+  "module": "Easytix Booking",
+  "name": "Special Request",
+  "permissions": [],
+  "track_changes": 1,
+  "track_views": 1
+}

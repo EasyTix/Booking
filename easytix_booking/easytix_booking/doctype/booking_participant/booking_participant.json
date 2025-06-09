@@ -1,0 +1,58 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "custom": 1,
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "participant_details_section",
+    "participant_name",
+    "participant_number",
+    "nationality",
+    "status"
+  ],
+  "fields": [
+    {
+      "fieldname": "participant_details_section",
+      "fieldtype": "Section Break",
+      "label": "Participant Details"
+    },
+    {
+      "fieldname": "participant_name",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Participant Name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "participant_number",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "IC / Passport No",
+      "reqd": 1
+    },
+    {
+      "fieldname": "nationality",
+      "fieldtype": "Data",
+      "in_list_view": 1,
+      "label": "Nationality",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "label": "Status",
+      "options": "Not Boarded\nBoarded",
+      "reqd": 1
+    }
+  ],
+  "is_submittable": 0,
+  "istable": 1,
+  "module": "Easytix Booking",
+  "name": "Booking Participant",
+  "permissions": [],
+  "track_changes": 1,
+  "track_views": 1
+}

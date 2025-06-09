@@ -1,0 +1,140 @@
+{
+  "actions": [],
+  "allow_auto_repeat": 0,
+  "allow_copy": 0,
+  "allow_events_in_timeline": 0,
+  "allow_guest_to_view": 0,
+  "allow_import": 0,
+  "allow_rename": 0,
+  "custom": 0,
+  "doctype": "DocType",
+  "editable_grid": 0,
+  "engine": "InnoDB",
+  "field_order": [
+    "booking_details_section",
+    "booking_name",
+    "email",
+    "contact_number",
+    "column_break_uvot",
+    "booking_date",
+    "package",
+    "status",
+    "participant_details_section",
+    "quantity",
+    "participants",
+    "special_requests"
+  ],
+  "fields": [
+    {
+      "fieldname": "booking_details_section",
+      "fieldtype": "Section Break",
+      "label": "Booking Details"
+    },
+    {
+      "fieldname": "booking_date",
+      "fieldtype": "Date",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Booking Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "quantity",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "Quantity",
+      "non_negative": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "package",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Package",
+      "options": "Package",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "fieldtype": "Select",
+      "in_list_view": 1,
+      "in_standard_filter": 1,
+      "label": "Status",
+      "options": "Pending\nApproved\nRejected",
+      "reqd": 1
+    },
+    {
+      "fieldname": "column_break_uvot",
+      "fieldtype": "Column Break"
+    },
+    {
+      "fieldname": "booking_name",
+      "fieldtype": "Data",
+      "label": "Booking Name",
+      "reqd": 1
+    },
+    {
+      "fieldname": "email",
+      "fieldtype": "Data",
+      "label": "Email",
+      "options": "Email",
+      "reqd": 1
+    },
+    {
+      "fieldname": "contact_number",
+      "fieldtype": "Phone",
+      "label": "Contact Number",
+      "reqd": 1
+    },
+    {
+      "fieldname": "participant_details_section",
+      "fieldtype": "Section Break",
+      "label": "Participant Details"
+    },
+    {
+      "fieldname": "participants",
+      "fieldtype": "Table",
+      "label": "Participants",
+      "options": "Booking Participant"
+    },
+    {
+      "fieldname": "special_requests",
+      "fieldtype": "Table",
+      "label": "Special Requests",
+      "options": "Special Request"
+    }
+  ],
+  "force_re_route_to_default_view": 1,
+  "grid_page_length": 50,
+  "hide_toolbar": 1,
+  "is_submittable": 0,
+  "issingle": 0,
+  "istable": 0,
+  "links": [],
+  "module": "Easytix Booking",
+  "name": "Booking",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "Portal User",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "row_format": "Dynamic",
+  "show_title_field_in_link": 1,
+  "sort_field": "creation",
+  "sort_order": "DESC",
+  "states": [],
+  "title_field": "booking_name",
+  "track_changes": 1,
+  "track_seen": 1,
+  "track_views": 1
+}

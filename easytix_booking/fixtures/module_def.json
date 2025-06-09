@@ -1,0 +1,12 @@
+[
+ {
+  "app_name": "easytix_booking",
+  "custom": 0,
+  "docstatus": 0,
+  "doctype": "Module Def",
+  "module_name": "Easytix Booking",
+  "name": "Easytix Booking",
+  "package": null,
+  "restrict_to_domain": null
+ }
+]
