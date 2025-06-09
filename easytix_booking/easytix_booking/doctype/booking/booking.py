@@ -3,11 +3,10 @@
 
 import frappe
 from frappe.model.document import Document
-
+from frappe.utils import datetime, getdate
 
 class Booking(Document):
     def validate(self):
-        super().validate()
         package = frappe.get_doc("Package", self.package)
         
         try:
@@ -16,7 +15,7 @@ class Booking(Document):
             frappe.throw(f"Failed to retrieve available dates: {str(e)}")
         
         booking_date_str = getdate(self.booking_date).strftime("%Y-%m-%d")
-
-        capacity_for_date = next((d[booking_date_str] for d in dates_with_capacity if booking_date_str in d), None)
+        capacity_for_date = dates_with_capacity[booking_date_str]
+        
         if capacity_for_date is None:
            frappe.throw(f"Booking date {booking_date_str} is not available for package '{self.package}'")
