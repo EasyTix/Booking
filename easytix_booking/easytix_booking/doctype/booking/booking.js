@@ -1,6 +1,15 @@
 frappe.ui.form.on("Booking", {
 	onload: function (frm) {
-		frm.set_df_property("status", "read_only", 1);
+		if (frm.doc.__islocal) return;
+		let fields = [
+			"booking_name",
+			"email",
+			"contact_number",
+			"booking_date",
+			"status",
+			"quantity",
+		];
+		fields.forEach((f) => frm.set_df_property(f, "read_only", 1));
 	},
 	refresh: function (frm) {
 		frm.fields_dict["participants"].grid.no_customize = true;
@@ -23,20 +32,6 @@ frappe.ui.form.on("Booking", {
 				frm.set_value("status", "Rejected");
 				frm.save();
 			});
-		}
-
-		if (frm.doc.status === "Rejected" || frm.doc.status === "Approved") {
-			frm.fields.forEach(function (field) {
-				frm.set_df_property(field.df.fieldname, "read_only", 1);
-			});
-		} else {
-			frm.fields.forEach(function (field) {
-				frm.set_df_property(field.df.fieldname, "read_only", field.df.read_only || 0);
-			});
-		}
-
-		if(frm.doc.status === "Approved") {
-			frm.set_df_property('participants', "read_only", 0);
 		}
 	},
 	quantity: function (frm) {
