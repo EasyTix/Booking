@@ -1,7 +1,7 @@
 {
   "actions": [],
   "allow_rename": 0,
-  "custom": 1,
+  "custom": 0,
   "doctype": "DocType",
   "editable_grid": 0,
   "engine": "InnoDB",
@@ -15,33 +15,45 @@
       "reqd": 1
     },
     {
-      "depends_on": "eval:doc.type == 'Date'",
-      "fieldname": "date_value",
-      "fieldtype": "Date",
+      "fieldname": "value",
+      "fieldtype": "Data",
       "in_list_view": 1,
-      "label": "Date"
+      "label": "Value",
+      "read_only": 1,
+      "virtual": 1,
+      "depends_on": "eval: 1==0"
     },
     {
-      "depends_on": "eval:doc.type == 'Date Range'",
-      "fieldname": "from_date",
+      "fieldname": "date_input",
       "fieldtype": "Date",
-      "in_list_view": 1,
-      "label": "From Date"
+      "in_list_view": 0,
+      "label": "Date",
+      "virtual": 1,
+      "depends_on": "eval: $.inArray(doc.type, ['Date Range', 'Date']) !== -1",
+      "mandatory_depends_on": "eval: $.inArray(doc.type, ['Date Range', 'Date']) !== -1"
     },
     {
-      "depends_on": "eval:doc.type == 'Date Range'",
-      "fieldname": "to_date",
+      "fieldname": "start_date",
       "fieldtype": "Date",
-      "in_list_view": 1,
-      "label": "To Date"
+      "in_list_view": 0,
+      "label": "From Date",
+      "hidden": 1
     },
     {
-      "depends_on": "eval:doc.type == 'Weekday'",
+      "fieldname": "end_date",
+      "fieldtype": "Date",
+      "in_list_view": 0,
+      "label": "To Date",
+      "hidden": 1
+    },
+    {
       "fieldname": "weekday",
       "fieldtype": "Select",
-      "in_list_view": 1,
+      "in_list_view": 0,
       "label": "Weekday",
-      "options": "\nMonday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday"
+      "options": "\nMonday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday",
+      "depends_on": "eval:doc.type == 'Weekday'",
+      "mandatory_depends_on": "eval:doc.type == 'Weekday'"
     },
     {
       "fieldname": "rule",

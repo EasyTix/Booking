@@ -8,6 +8,14 @@ from datetime import datetime, timedelta
 
 class Package(Document):
 
+	def onload(self):
+		for rule in self.date_rules:
+			rule.compute_values()
+			
+	def before_validate(self):
+		for rule in self.date_rules:
+			rule.clean_values()
+
 	def get_available_dates(self):
 		available_dates = set()
 		excluded_dates = set()
@@ -28,9 +36,9 @@ class Package(Document):
 					excluded_dates.add(date_str)
 					available_dates.discard(date_str)
 			
-			elif rule_type == "Date Range" and rule.from_date and rule.to_date:
-				current_date = getdate(rule.from_date)
-				end_date = getdate(rule.to_date)
+			elif rule_type == "Date Range" and rule.start_date and rule.end_date:
+				current_date = getdate(rule.start_date)
+				end_date = getdate(rule.end_date)
 				while current_date <= end_date:
 					date_str = current_date.strftime("%Y-%m-%d")
 					if rule_action == "Include":
