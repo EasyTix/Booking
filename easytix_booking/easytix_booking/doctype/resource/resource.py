@@ -6,4 +6,10 @@ from frappe.model.document import Document
 
 
 class Resource(Document):
-    pass
+	def onload(self):
+		for rule in self.date_rules:
+			rule.compute_values()
+			
+	def before_validate(self):
+		for rule in self.date_rules:
+			rule.clean_values()
