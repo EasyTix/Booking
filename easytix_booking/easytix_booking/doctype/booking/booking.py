@@ -6,27 +6,11 @@ from frappe.model.document import Document
 import datetime 
 
 class Booking(Document):
-	# def load_from_db(self):
-	#     super().load_from_db()
-		
-	#     fields = ["booking_name", "email","contact_number", "booking_date","status", "quantity"]
-	#     if(self.status in ["Pending", "Approved", "Rejected"]):
-	#         for field in fields:
-	#             self.set_field_read_only(field,True)
-	#     else :
-	#         for field in fields:
-	#             self.set_field_read_only(field,False)
-		
-	# def set_field_read_only(self, fieldname, value):
-	#     for field in self.meta.fields:
-	#         if field.fieldname == fieldname:
-	#             field.read_only = value
-	@property
-	def quantity(self):
+	def before_save(self):
 		if not self.variation_quantity:
-			return 0
-		return sum(row.quantity or 0 for row in self.variation_quantity)
-
+			self.quantity = 0
+		self.quantity = sum(row.quantity or 0 for row in self.variation_quantity)
+		
 	def validate(self):
 		if self.is_new():
 			package = frappe.get_doc("Package", self.package)

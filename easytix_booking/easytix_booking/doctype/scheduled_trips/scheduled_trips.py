@@ -42,21 +42,20 @@ class ScheduledTrips(Document):
 
 		sql = f"""
 			SELECT
-				b.name as name,
-				b.booking_date,
-				p.package_name as package,
-				p.resource,
-				r.resource_name,
-				r.capacity AS capacity, 
-				SUM(v.quantity) AS quantity
-			FROM `tabBooking` b
-			INNER JOIN `tabPackage` p ON p.name = b.package
-			INNER JOIN `tabResource` r ON r.name = p.resource
-			INNER JOIN `tabVariation Quantity` v ON v.parent = b.name AND v.parenttype = 'Booking'
-			WHERE b.status = 'Approved' {condition_sql}
-			GROUP BY b.package, b.booking_date
-			ORDER BY b.booking_date ASC, p.package_name ASC
-			LIMIT %s OFFSET %s
+                b.name as name,
+                b.booking_date,
+                p.package_name as package,
+                p.resource,
+                r.resource_name,
+                r.capacity AS capacity, 
+                SUM(b.quantity) AS quantity
+            FROM `tabBooking` b
+            INNER JOIN `tabPackage` p ON p.name = b.package
+            INNER JOIN `tabResource` r ON r.name = p.resource
+            WHERE b.status = 'Approved' {condition_sql}
+            GROUP BY b.package, b.booking_date
+            ORDER BY b.booking_date ASC, p.package_name ASC
+            LIMIT %s OFFSET %s
 		"""
 
 		values.extend([limit_page_length, limit_start])
@@ -149,18 +148,14 @@ class ScheduledTrips(Document):
 				"parent": ["in",  [r["name"] for r in bookings_doc]],
 				"parenttype": "Booking"
 			},
-			fields="variation, SUM(quantity) as quantity",
+			fields="*",
 			group_by='variation'
 		)
 		for idx, item in enumerate(variations_doc, start = 1):
 			item['idx'] = idx
 
-		total_quantity = sum([b["quantity"] for b in variations_doc])
-		
-		for booking in bookings_doc:
-			doc = frappe.get_doc("Booking", booking.name)
-			booking.variation_quantity = doc.variation_quantity
-			
+		total_quantity = sum([b["quantity"] for b in bookings_doc])
+	
 		super(Document, self).__init__({
 			"doctype": "Scheduled Trips",
 			"name": self.name,

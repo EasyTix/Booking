@@ -4,7 +4,7 @@ from frappe.model.document import Document
 from frappe.utils import datetime
 
 @frappe.whitelist()
-def create(booking_name, email, contact_number, package, booking_date, quantity, participants=None, special_requests=None):
+def create(booking_name, email, contact_number, package, booking_date, variation_quantity, participants=None, special_requests=None):
 	"""
 	Create a new booking.
 	Args:
@@ -20,7 +20,7 @@ def create(booking_name, email, contact_number, package, booking_date, quantity,
 	"""
 	try:
 		# Validate inputs
-		if not all([booking_name, email, contact_number, package, booking_date, quantity]):
+		if not all([booking_name, email, contact_number, package, booking_date]):
 			raise ValueError("All required fields must be provided")
 		
 		# Validate package exists
@@ -34,10 +34,8 @@ def create(booking_name, email, contact_number, package, booking_date, quantity,
 		except ValueError:
 			raise ValueError("Invalid booking date format. Use YYYY-MM-DD")
 		
-		# Validate quantity
-		quantity = int(quantity)
-		if quantity <= 0:
-			raise ValueError("Quantity must be a positive integer")
+		if not variation_quantity:
+			raise ValueError("Invalid variations provided")
 		
 		# Validate email format
 		if not frappe.utils.validate_email_address(email):
@@ -51,10 +49,10 @@ def create(booking_name, email, contact_number, package, booking_date, quantity,
 			"contact_number": contact_number,
 			"package": package.name,
 			"booking_date": booking_date,
-			"quantity": quantity,
 			"status": "Created",
 			"participants": participants or [],
-			"special_requests": special_requests or []
+			"special_requests": special_requests or [],
+			"variation_quantity": variation_quantity
 		})
 		
 		booking.insert(ignore_permissions=False)
@@ -72,7 +70,8 @@ def create(booking_name, email, contact_number, package, booking_date, quantity,
 				"quantity": booking.quantity,
 				"status": booking.status,
 				"participants": booking.participants,
-				"special_requests": booking.special_requests
+				"special_requests": booking.special_requests,
+				"variation_quantity": booking.variation_quantity
 			},
 			"message": "Booking created successfully"
 		}
