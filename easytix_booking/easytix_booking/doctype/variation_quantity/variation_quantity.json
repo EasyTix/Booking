@@ -1,0 +1,32 @@
+{
+  "actions": [],
+  "allow_rename": 0,
+  "custom": 0,
+  "doctype": "DocType",
+  "editable_grid": 0,
+  "engine": "InnoDB",
+  "fields": [
+    {
+      "fieldname": "variation",
+      "fieldtype": "Link",
+      "in_list_view": 1,
+      "label": "Variation",
+      "options": "Variation",
+      "reqd": 1
+    },
+    {
+      "fieldname": "quantity",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "Quantity",
+      "non_negative": 1,
+      "reqd": 1
+    }
+  ],
+  "istable": 1,
+  "module": "Easytix Booking",
+  "name": "Variation Quantity",
+  "permissions": [],
+  "track_changes": 1,
+  "track_views": 1
+}

@@ -19,6 +19,8 @@
     "booking_date",
     "package",
     "status",
+    "variation_quantity_section",
+    "variation_quantity",
     "participant_details_section",
     "quantity",
     "participants",
@@ -43,8 +45,18 @@
       "fieldtype": "Int",
       "in_list_view": 1,
       "label": "Quantity",
-      "non_negative": 1,
-      "reqd": 1
+      "non_negative": 1
+    },
+    {
+      "fieldname": "variation_quantity_section",
+      "fieldtype": "Section Break",
+      "label": "Variations"
+    },
+    {
+      "fieldname": "variation_quantity",
+      "fieldtype": "Table",
+      "label": "Variations",
+      "options": "Variation Quantity"
     },
     {
       "fieldname": "package",

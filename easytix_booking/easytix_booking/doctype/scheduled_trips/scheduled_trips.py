@@ -128,6 +128,9 @@ class ScheduledTrips(Document):
             },
             fields="*"
         )
+        for idx, item in enumerate(bookings_doc, start = 1):
+            item['idx'] = idx
+
         participants_doc = frappe.db.get_all(
             "Booking Participant",
             filters={
@@ -136,6 +139,9 @@ class ScheduledTrips(Document):
             },
             fields="*"
         )
+        for idx, item in enumerate(participants_doc, start = 1):
+            item['idx'] = idx
+
         total_quantity = sum([b["quantity"] for b in bookings_doc])
 
         super(Document, self).__init__({
