@@ -3,8 +3,7 @@
 
 import frappe
 from frappe.model.document import Document
-from frappe.utils import getdate, add_days, get_datetime
-from datetime import datetime, timedelta
+from frappe.utils import getdate, add_days, get_datetime, add_to_date, today
 
 class Package(Document):
 
@@ -52,7 +51,7 @@ class Package(Document):
 			elif rule_type == "Weekday" and rule.weekday:
 				# Generate dates for the next 365 days
 				start_date = get_datetime().date()
-				end_date = start_date + timedelta(days=365)
+				end_date = add_to_date(start_date,1)
 				current_date = start_date
 				weekday_index = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].index(rule.weekday)
 				
@@ -71,10 +70,9 @@ class Package(Document):
 		if not final_dates:
 			return []
 		
-		# Fetch bookings in one query
 		bookings = frappe.get_all(
 			"Booking",
-			filters={"package": self.name, "status": ["in", ["Approved", "Pending", "Created"]]},
+			filters={"package": self.name, "status": ["in", ["Approved", "Pending", "Created"] ], "booking_date": [ ">=", today() ] },
 			fields=["booking_date", "SUM(quantity) as total_quantity"],
 			group_by="booking_date"
 		)

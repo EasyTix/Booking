@@ -17,6 +17,8 @@
     "column_break_uvot",
     "quantity",
     "capacity",
+    "variations_section",
+    "variations",
     "bookings_section",
     "bookings",
     "participant_details_section",
@@ -65,8 +67,19 @@
       "reqd": 1
     },
     {
-      "fieldname": "bookings_section",
+      "fieldname": "variations_section",
       "fieldtype": "Section Break",
+      "label": "Variations"
+    },
+    {
+      "fieldname": "variations",
+      "fieldtype": "Table",
+      "label": "",
+      "options": "Variation Quantity"
+    },
+    {
+      "fieldname": "bookings_section",
+      "fieldtype": "Tab Break",
       "label": "Bookings"
     },
     {

@@ -142,7 +142,19 @@ class ScheduledTrips(Document):
         for idx, item in enumerate(participants_doc, start = 1):
             item['idx'] = idx
 
-        total_quantity = sum([b["quantity"] for b in bookings_doc])
+        variations_doc = frappe.db.get_all(
+            "Variation Quantity",
+            filters={
+                "parent": ["in",  [r["name"] for r in bookings_doc]],
+                "parenttype": "Booking"
+            },
+            fields="variation, SUM(quantity) as quantity",
+            group_by='variation'
+        )
+        for idx, item in enumerate(variations_doc, start = 1):
+            item['idx'] = idx
+
+        total_quantity = sum([b["quantity"] for b in variations_doc])
 
         super(Document, self).__init__({
             "doctype": "Scheduled Trips",
@@ -152,5 +164,6 @@ class ScheduledTrips(Document):
             "capacity": resource_doc.capacity,
             "quantity": total_quantity,
             "bookings" : bookings_doc,
-            "participants" : participants_doc
+            "participants" : participants_doc,
+            "variations" : variations_doc
         })
