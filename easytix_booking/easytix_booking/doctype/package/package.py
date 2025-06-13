@@ -70,6 +70,15 @@ class Package(Document):
 		if not final_dates:
 			return []
 		
+		# Fetch bookings in one query
+		# result = frappe.db.sql("""
+		# 	SELECT b.booking_date as booking_date, SUM(vq.quantity) as total_quantity
+		# 	FROM `tabVariation Quantity` vq
+		# 	INNER JOIN `tabBooking` b ON vq.parent = b.name AND vq.parenttype = 'Booking'
+		# 	WHERE b.package = %s AND b.booking_date > %s
+		# 	GROUP BY b.booking_date
+		# """, ("asd", today), as_dict=True)
+		
 		bookings = frappe.get_all(
 			"Booking",
 			filters={"package": self.name, "status": ["in", ["Approved", "Pending", "Created"] ], "booking_date": [ ">=", today() ] },

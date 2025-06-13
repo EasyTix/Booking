@@ -45,7 +45,9 @@
       "fieldtype": "Int",
       "in_list_view": 1,
       "label": "Quantity",
-      "non_negative": 1
+      "non_negative": 1,
+      "is_virtual": 1,
+      "read_only" : 1
     },
     {
       "fieldname": "variation_quantity_section",

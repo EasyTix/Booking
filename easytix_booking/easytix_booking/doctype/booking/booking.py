@@ -21,6 +21,11 @@ class Booking(Document):
 	#     for field in self.meta.fields:
 	#         if field.fieldname == fieldname:
 	#             field.read_only = value
+	@property
+	def quantity(self):
+		if not self.variation_quantity:
+			return 0
+		return sum(row.quantity or 0 for row in self.variation_quantity)
 
 	def validate(self):
 		if self.is_new():
