@@ -12,6 +12,7 @@ class Booking(Document):
 		self.quantity = sum(row.quantity or 0 for row in self.variation_quantity)
 		
 	def validate(self):
+		self.quantity = sum(row.quantity or 0 for row in self.variation_quantity)
 		if self.is_new():
 			package = frappe.get_doc("Package", self.package)
 			

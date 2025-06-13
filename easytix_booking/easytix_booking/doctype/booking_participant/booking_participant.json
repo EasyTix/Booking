@@ -41,6 +41,14 @@
       "reqd": 1
     },
     {
+      "fieldname": "age",
+      "fieldtype": "Int",
+      "in_list_view": 1,
+      "label": "Age",
+      "non_negative": 1,
+      "reqd": 1
+    },
+    {
       "fieldname": "status",
       "fieldtype": "Select",
       "in_list_view": 1,

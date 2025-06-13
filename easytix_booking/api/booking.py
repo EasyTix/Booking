@@ -13,7 +13,7 @@ def create(booking_name, email, contact_number, package, booking_date, variation
 		contact_number (str): Phone number.
 		package (str): Name of the package.
 		booking_date (str): Booking date (YYYY-MM-DD).
-		quantity (int): Number of participants.
+		variation_quantity (list): List of variation_quantity.
 		participants (list): List of participant details (optional).
 		special_requests (list): List of special requests (optional).
 	Returns: Newly created booking details.
@@ -36,7 +36,7 @@ def create(booking_name, email, contact_number, package, booking_date, variation
 		
 		if not variation_quantity:
 			raise ValueError("Invalid variations provided")
-		
+			
 		# Validate email format
 		if not frappe.utils.validate_email_address(email):
 			raise ValueError("Invalid email address")
@@ -71,7 +71,10 @@ def create(booking_name, email, contact_number, package, booking_date, variation
 				"status": booking.status,
 				"participants": booking.participants,
 				"special_requests": booking.special_requests,
-				"variation_quantity": booking.variation_quantity
+				"variation_quantity": [
+					{ "variation": row.variation, "quantity": row.quantity }
+					for row in booking.variation_quantity
+				]
 			},
 			"message": "Booking created successfully"
 		}
@@ -135,6 +138,9 @@ def update_manifest(booking_name, participants=None):
 		if not booking:
 			raise ValueError(f"Booking '{booking_name}' not found")
 		
+		if len(participants) > booking.quantity:
+			raise ValueError(f"Manifest has too many participants")
+
 		booking.set('participants', [])
 		for p in participants:
 			booking.append('participants', {"doctype": "Booking Participant",**p})
@@ -148,7 +154,10 @@ def update_manifest(booking_name, participants=None):
 				"name": booking.name,
 				"booking_name": booking.booking_name,
 				"status": booking.status,
-				"participants": booking.participants,
+				"participants": [
+					{ "participant_name": row.participant_name, "participant_number": row.participant_number, "nationality": row.nationality, "age": row.age }
+					for row in booking.participants
+				],
 			},
 			"message": "Booking status updated successfully"
 		}
