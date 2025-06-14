@@ -147,6 +147,12 @@ def update_manifest(booking_name, participants=None):
 		
 		booking.save(ignore_permissions=False)
 		frappe.db.commit()
+
+		meta = frappe.get_meta("Booking Participant")
+		declared_fields = [
+			df.fieldname for df in meta.fields
+			if df.fieldname and df.fieldtype not in ["Section Break", "Column Break"]
+		]
 		
 		return {
 			"status": "success",
@@ -155,7 +161,7 @@ def update_manifest(booking_name, participants=None):
 				"booking_name": booking.booking_name,
 				"status": booking.status,
 				"participants": [
-					{ "participant_name": row.participant_name, "participant_number": row.participant_number, "nationality": row.nationality, "age": row.age }
+					{field: row.get(field) for field in declared_fields}
 					for row in booking.participants
 				],
 			},
