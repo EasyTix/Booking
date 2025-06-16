@@ -12,6 +12,12 @@ $(() => {
 					return moment(value, "YYYY-MM-DD").format("DD MMM YYYY");
 				}
 				return "";
+			},
+			creation: function (value) {
+				if (value) {
+					return moment(value, "YYYY-MM-DD").format("DD MMM YYYY");
+				}
+				return "";
 			}
 		}
 	};

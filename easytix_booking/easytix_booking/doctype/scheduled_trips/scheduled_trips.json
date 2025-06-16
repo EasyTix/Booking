@@ -100,6 +100,8 @@
       "options": "Booking Participant"
     }
   ],
+  "force_re_route_to_default_view": 1,
+  "grid_page_length": 50,
   "hide_toolbar": 1,
   "is_virtual": 1,
   "issingle": 0,

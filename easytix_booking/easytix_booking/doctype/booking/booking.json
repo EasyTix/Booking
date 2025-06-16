@@ -37,8 +37,17 @@
       "fieldtype": "Date",
       "in_list_view": 1,
       "in_standard_filter": 1,
-      "label": "Booking Date",
+      "label": "Trip Date",
       "reqd": 1
+    },
+    {
+      "fieldname": "creation",
+      "fieldtype": "Data",
+      "in_list_view": 0,
+      "read_only": 1,
+      "label": "Created Date",
+      "fetch_from": "creation",
+      "hidden":1
     },
     {
       "fieldname": "quantity",
@@ -74,8 +83,10 @@
       "in_list_view": 1,
       "in_standard_filter": 1,
       "label": "Status",
-      "options": "Pending\nApproved\nRejected\nCreated",
-      "reqd": 1
+      "options": "Pending\nApproved\nRejected\nCreated\nCancelled",
+      "reqd": 1,
+      "default": "Pending",
+      "read_only":1
     },
     {
       "fieldname": "column_break_uvot",
@@ -120,7 +131,7 @@
   ],
   "force_re_route_to_default_view": 1,
   "grid_page_length": 50,
-  "hide_toolbar": 1,
+  "hide_toolbar": 0,
   "is_submittable": 0,
   "issingle": 0,
   "istable": 0,

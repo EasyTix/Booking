@@ -13,7 +13,7 @@ app_logo_url = "/assets/easytix_booking/img/app_logo.png"
 fixtures = [
     {"doctype": "Module Def", "filters": [["app_name", "=", "easytix_booking"]]},
     {"doctype": "Workspace", "filters": [["module", "=", "Easytix Booking"]]},
-    "Page"
+    {"doctype": "Server Script", "filters": [["module", "=", "Easytix Booking"]]},
 ]
 
 # Each item in the list will be shown as an app in the apps page
@@ -149,23 +149,28 @@ add_to_apps_screen = [
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"easytix_booking.tasks.all"
-# 	],
-# 	"daily": [
-# 		"easytix_booking.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"easytix_booking.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"easytix_booking.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"easytix_booking.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	# "all": [
+	# 	"easytix_booking.tasks.all"
+	# ],
+	# "daily": [
+	# 	"easytix_booking.tasks.daily"
+	# ],
+	# "hourly": [
+	# 	"easytix_booking.tasks.hourly"
+	# ],
+	# "weekly": [
+	# 	"easytix_booking.tasks.weekly"
+	# ],
+	# "monthly": [
+	# 	"easytix_booking.tasks.monthly"
+	# ],
+    "cron": {
+        "*/15 * * * *": [
+            "easytix_booking.tasks.booking.expire_bookings"
+        ]
+    }
+}
 
 # Testing
 # -------

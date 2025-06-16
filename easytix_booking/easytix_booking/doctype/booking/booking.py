@@ -6,6 +6,9 @@ from frappe.model.document import Document
 import datetime 
 
 class Booking(Document):
+	def cancel(self):
+		self.status = "Cancelled"
+	
 	def before_save(self):
 		if not self.variation_quantity:
 			self.quantity = 0
