@@ -4,7 +4,7 @@ from frappe.utils import now_datetime, add_minutes
 def expire_bookings():
     cutoff_time = add_minutes(now_datetime(), -15)
     bookings = frappe.get_all("Booking", 
-        filters={"creation": ["<", cutoff_time], "status": ["!=", "Cancelled"]}, 
+        filters={"creation": ["<", cutoff_time], "status": "Created"}, 
         fields=["name"]
     )
     
