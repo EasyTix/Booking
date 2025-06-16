@@ -22,8 +22,8 @@ add_to_apps_screen = [
 		"name": "easytix_booking",
 		"logo": "/assets/easytix_booking/img/app_logo.png",
 		"title": "Easytix Booking",
-		"route": "/easytix-booking",
-		#"has_permission": None #"easytix_booking.api.permission.has_app_permission"
+		"route": "/app/easytix-booking",
+		"has_permission": "easytix_booking.api.permission.has_app_permission"
 	}
 ]
 
