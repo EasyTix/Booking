@@ -5,6 +5,7 @@ app_description = "EasyTix Booking CRM"
 app_email = "brian@tripcarte.asia"
 app_license = "mit"
 app_logo_url = "/assets/easytix_booking/img/app_logo.png"
+app_home = "/app/easytix_booking"
 
 # Apps
 # ------------------
@@ -23,7 +24,7 @@ add_to_apps_screen = [
 		"logo": "/assets/easytix_booking/img/app_logo.png",
 		"title": "Easytix Booking",
 		"route": "/app/easytix_booking",
-		"has_permission": None #"easytix_booking.api.permission.has_app_permission"
+		"has_permission": "easytix_booking.api.permission.has_app_permission"
 	}
 ]
 
