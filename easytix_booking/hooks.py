@@ -1,4 +1,4 @@
-app_name = "easytix_booking"
+app_name = "Easytix Booking"
 app_title = "Easytix Booking"
 app_publisher = "Tixcarte"
 app_description = "EasyTix Booking CRM"
@@ -12,7 +12,7 @@ app_home = "/app/easytix_booking"
 
 # required_apps = []
 fixtures = [
-    {"doctype": "Module Def", "filters": [["app_name", "=", "easytix_booking"]]},
+    {"doctype": "Module Def", "filters": [["app_name", "=", "Easytix Booking"]]},
     {"doctype": "Workspace", "filters": [["module", "=", "Easytix Booking"]]},
     {"doctype": "Server Script", "filters": [["module", "=", "Easytix Booking"]]},
 ]
@@ -20,7 +20,7 @@ fixtures = [
 # Each item in the list will be shown as an app in the apps page
 add_to_apps_screen = [
 	{
-		"name": "easytix_booking",
+		"name": "Easytix Booking",
 		"logo": "/assets/easytix_booking/img/app_logo.png",
 		"title": "Easytix Booking",
 		"route": "/app/easytix_booking",

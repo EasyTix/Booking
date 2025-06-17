@@ -1,6 +1,6 @@
 [
  {
-  "app": "easytix_booking",
+  "app": "Easytix Booking",
   "charts": [],
   "content": "[{\"id\":\"qi6CUOioJB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Trip Calendar\",\"col\":3}},{\"id\":\"iYuiEDSZJ0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resources\",\"col\":3}},{\"id\":\"0IFUh0iW6p\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Packages\",\"col\":3}},{\"id\":\"Zuhy1yyfQJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"View Bookings\",\"col\":3}},{\"id\":\"EkN7bl18eb\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Booking\",\"col\":6}},{\"id\":\"bFhRQITSse\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Trips\",\"col\":6}}]",
   "custom_blocks": [],
@@ -18,7 +18,7 @@
   "links": [],
   "modified": "2025-06-04 09:47:50.223161",
   "module": "Easytix Booking",
-  "name": "easytix_booking",
+  "name": "Easytix Booking",
   "number_cards": [],
   "parent_page": "",
   "public": 1,
