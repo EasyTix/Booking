@@ -13,7 +13,7 @@ class DateRule(Document):
 		elif self.type == "Date":
 			self.date_input = self.value = self.start_date or ""
 		elif self.type == "Date Range":
-			self.value = f"{self.start_date or ''} to {self.end_date or ''}"
+			self.date_input = self.value = f"{self.start_date or ''} to {self.end_date or ''}"
 		
 	def clean_values(self):
 		if self.type == "Weekday":
