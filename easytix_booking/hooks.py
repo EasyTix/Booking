@@ -34,6 +34,7 @@ add_to_apps_screen = [
 # include js, css files in header of desk.html
 # app_include_css = "/assets/easytix_booking/css/easytix_booking.css"
 # app_include_js = "/assets/easytix_booking/js/easytix_booking.js"
+app_include_js = [ "/assets/easytix_booking/js/controls/easytix_date.js" ]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/easytix_booking/css/easytix_booking.css"
