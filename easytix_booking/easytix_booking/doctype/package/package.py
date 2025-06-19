@@ -26,8 +26,8 @@ class Package(Document):
 			rule_type = rule.type
 			rule_action = rule.rule
 			
-			if rule_type == "Date" and rule.date_value:
-				date_str = getdate(rule.date_value).strftime("%Y-%m-%d")
+			if rule_type == "Date" and rule.start_date:
+				date_str = getdate(rule.start_date).strftime("%Y-%m-%d")
 				if rule_action == "Include":
 					available_dates.add(date_str)
 					excluded_dates.discard(date_str)
