@@ -33,7 +33,7 @@
       "reqd": 1
     },
     {
-      "fieldname": "nationality",
+      "fieldname": "participant_nationality",
       "fieldtype": "Link",
       "in_list_view": 1,
       "label": "Nationality",
@@ -41,7 +41,7 @@
       "reqd": 1
     },
     {
-      "fieldname": "age",
+      "fieldname": "participant_age",
       "fieldtype": "Int",
       "in_list_view": 1,
       "label": "Age",
