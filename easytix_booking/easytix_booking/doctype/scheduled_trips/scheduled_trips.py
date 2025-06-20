@@ -148,7 +148,7 @@ class ScheduledTrips(Document):
 				"parent": ["in",  [r["name"] for r in bookings_doc]],
 				"parenttype": "Booking"
 			},
-			fields="*",
+			fields= ["variation", "SUM(quantity) as quantity"],
 			group_by='variation'
 		)
 		for idx, item in enumerate(variations_doc, start = 1):
