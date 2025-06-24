@@ -42,20 +42,20 @@ class ScheduledTrips(Document):
 
 		sql = f"""
 			SELECT
-                b.name as name,
-                b.booking_date,
-                p.package_name as package,
-                p.resource,
-                r.resource_name,
-                r.capacity AS capacity, 
-                SUM(b.quantity) AS quantity
-            FROM `tabBooking` b
-            INNER JOIN `tabPackage` p ON p.name = b.package
-            INNER JOIN `tabResource` r ON r.name = p.resource
-            WHERE b.status = 'Approved' {condition_sql}
-            GROUP BY b.package, b.booking_date
-            ORDER BY b.booking_date ASC, p.package_name ASC
-            LIMIT %s OFFSET %s
+				b.name as name,
+				b.booking_date,
+				p.package_name as package,
+				p.resource,
+				r.resource_name,
+				r.capacity AS capacity, 
+				SUM(b.quantity) AS quantity
+			FROM `tabBooking` b
+			INNER JOIN `tabPackage` p ON p.name = b.package
+			INNER JOIN `tabResource` r ON r.name = p.resource
+			WHERE b.status = 'Approved' {condition_sql}
+			GROUP BY b.package, b.booking_date
+			ORDER BY b.booking_date ASC, p.package_name ASC
+			LIMIT %s OFFSET %s
 		"""
 
 		values.extend([limit_page_length, limit_start])
@@ -69,37 +69,18 @@ class ScheduledTrips(Document):
 	@staticmethod
 	def get_count(args=None):
 		args = args or {}
-		conditions = []
-		values = []
+		user_filters = args.get("filters", {})
+		if isinstance(user_filters, str):
+				user_filters = frappe.parse_json(user_filters)
 
-		filters = args.get("filters", [])
-		if isinstance(filters, str):
-			filters = json.loads(filters)
+		if isinstance(user_filters, list):
+				user_filters = ScheduledTrips.simple_filters_to_dict(user_filters)
 
-		if isinstance(filters, list):
-			filters = ScheduledTrips.simple_filters_to_dict(filters)
-
-		if filters.get("package"):
-			conditions.append("b.package = %s")
-			values.append(filters["package"])
-
-		if filters.get("booking_date"):
-			conditions.append("b.booking_date = %s")
-			values.append(filters["booking_date"])
-
-		condition_sql = f" AND {' AND '.join(conditions)}" if conditions else ""
-
-		sql = f"""
-			SELECT COUNT(*) FROM (
-				SELECT 1
-				FROM `tabBooking` b
-				WHERE b.status = 'Approved' {condition_sql}
-				GROUP BY b.package, b.booking_date
-			) AS subquery
-		"""
-
-		count = frappe.db.sql(sql, values)[0][0]
-		return count
+		filters = {
+				**user_filters,
+				"status": "Approved"
+		}
+		return len( frappe.db.get_all("Booking", fields=["COUNT(1)"], filters= filters, group_by ="package, booking_date") )
 
 	def load_from_db(self):
 		row_doc = frappe.db.get_value(
