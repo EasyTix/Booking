@@ -2,7 +2,7 @@
  {
   "app": "Easytix Booking",
   "charts": [],
-  "content": "[{\"id\":\"qi6CUOioJB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Trip Calendar\",\"col\":3}},{\"id\":\"iYuiEDSZJ0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resources\",\"col\":3}},{\"id\":\"0IFUh0iW6p\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Packages\",\"col\":3}},{\"id\":\"Zuhy1yyfQJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"View Bookings\",\"col\":3}},{\"id\":\"EkN7bl18eb\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Booking\",\"col\":6}},{\"id\":\"bFhRQITSse\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Trips\",\"col\":6}}]",
+  "content": "[{\"id\":\"Opn8vWE19I\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Variations\",\"col\":4}},{\"id\":\"iYuiEDSZJ0\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resources\",\"col\":4}},{\"id\":\"0IFUh0iW6p\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Packages\",\"col\":4}},{\"id\":\"uwU4m269Mb\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"Zuhy1yyfQJ\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"View Bookings\",\"col\":4}},{\"id\":\"qi6CUOioJB\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Trip Calendar\",\"col\":4}},{\"id\":\"2A7qRB50Aa\",\"type\":\"spacer\",\"data\":{\"col\":12}},{\"id\":\"EkN7bl18eb\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Booking\",\"col\":6}},{\"id\":\"bFhRQITSse\",\"type\":\"quick_list\",\"data\":{\"quick_list_name\":\"Trips\",\"col\":6}}]",
   "custom_blocks": [],
   "docstatus": 0,
   "doctype": "Workspace",
@@ -16,7 +16,7 @@
   "link_to": null,
   "link_type": "DocType",
   "links": [],
-  "modified": "2025-06-04 09:47:50.223161",
+  "modified": "2025-06-24 16:35:56.175710",
   "module": "Easytix Booking",
   "name": "Easytix Booking",
   "number_cards": [],
@@ -39,13 +39,27 @@
   "sequence_id": 23.0,
   "shortcuts": [
    {
-    "color": "Green",
+    "color": "Grey",
     "doc_view": "List",
     "format": null,
     "icon": null,
     "kanban_board": null,
     "label": "Trip Calendar",
     "link_to": "Scheduled Trips",
+    "report_ref_doctype": null,
+    "restrict_to_domain": null,
+    "stats_filter": "[]",
+    "type": "DocType",
+    "url": null
+   },
+   {
+    "color": "Grey",
+    "doc_view": "List",
+    "format": null,
+    "icon": null,
+    "kanban_board": null,
+    "label": "Variations",
+    "link_to": "Variation",
     "report_ref_doctype": null,
     "restrict_to_domain": null,
     "stats_filter": "[]",
@@ -81,7 +95,7 @@
     "url": null
    },
    {
-    "color": "Green",
+    "color": "Grey",
     "doc_view": "List",
     "format": null,
     "icon": null,

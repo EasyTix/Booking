@@ -95,9 +95,6 @@ class ScheduledTrips(Document):
 		if not row_doc:
 			frappe.throw("Scheduled Trip not found")
 
-		#frappe.log_error(f"Load failed: {package}", "Employee Load")
-		#frappe.throw(f"Record Dump: {row_doc}")
-
 		package_doc = frappe.get_doc("Package", row_doc.package)
 		resource_doc = frappe.get_doc("Resource", package_doc.resource)
 		bookings_doc = frappe.db.get_all(

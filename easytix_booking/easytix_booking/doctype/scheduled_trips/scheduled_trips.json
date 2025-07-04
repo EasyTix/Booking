@@ -112,7 +112,7 @@
   "name": "Scheduled Trips",
   "permissions": [
     {
-      "create": 1,
+      "create": 0,
       "delete": 0,
       "email": 1,
       "export": 1,
@@ -120,7 +120,7 @@
       "read": 1,
       "report": 1,
       "role": "Portal User",
-      "share": 1,
+      "share": 0,
       "write": 0
     }
   ],
